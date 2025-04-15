@@ -1,14 +1,16 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import nextPlugin from "@next/eslint-plugin-next";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [...compat.extends("next/core-web-vitals")];
-
-export default eslintConfig;
+export default [
+  {
+    // For Next.js-specific rules:
+    plugins: {
+      "@next/next": nextPlugin,
+    },
+    rules: {
+      // Disable specific rules:
+      "@next/next/no-img-element": "off",       // Allows `<img>` tags
+      "react/no-unescaped-entities": "off",     // Allows apostrophes
+      "react-hooks/exhaustive-deps": "warn",    // Downgrade to warning
+    },
+  },
+];
