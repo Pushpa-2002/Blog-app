@@ -1,7 +1,18 @@
 {
-  "build": {
-    "env": {
-      "NEXT_IGNORE_ESLINT_ERRORS": "true"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "env": {
+    "NEXT_IGNORE_ESLINT_ERRORS": "true"
   }
 }
